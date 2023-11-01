@@ -1,6 +1,7 @@
 package pl.javastart.task;
 
 public class Ticket {
+    private int id;
     private String name;
     private String place;
     private String type;
@@ -8,12 +9,17 @@ public class Ticket {
     private double bonus;
     private static int numberTicket = 1;
 
+    public int getId() {
+        return id;
+    }
+
     public Ticket(String name, String place, String type, double price, double bonus) {
         this.name = name;
         this.place = place;
         this.type = type;
         this.price = price;
         this.bonus = bonus;
+        this.id = numberTicket++;
     }
 
     public String getName() {
@@ -36,8 +42,5 @@ public class Ticket {
         return bonus;
     }
 
-    public static int getNumberTicket() {
-        return numberTicket++;
-    }
 }
 

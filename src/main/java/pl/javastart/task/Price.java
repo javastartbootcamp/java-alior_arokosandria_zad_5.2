@@ -2,36 +2,35 @@ package pl.javastart.task;
 
 import java.util.Scanner;
 
-public class Price extends Ticket {
-    public Price(String name, String place, String type, double price, double bonus) {
-        super(name, place, type, price, bonus);
-    }
+public class Price {
+    private static int addPrice = 5;
+    private static double addBonus = 0.05;
 
-    double priceTicket() {
-        double priceTicket = getPrice() - getPrice() * getBonus();
-        if (getType().equals("Online")) {
+    double priceTicket(Ticket ticket) {
+        double priceTicket = ticket.getPrice() - ticket.getPrice() * ticket.getBonus();
+        if (ticket.getType().equals("Online")) {
             return priceTicket;
-        } else if (getType().equals("Standard")) {
-            return priceTicket + 5;
-        } else if (getType().equals("Gift")) {
-            return priceTicket + 5 + priceTicket * getBonus();
+        } else if (ticket.getType().equals("Standard")) {
+            return priceTicket + addPrice;
+        } else if (ticket.getType().equals("Gift")) {
+            return priceTicket + addPrice + priceTicket * addBonus;
         } else {
             return priceTicket;
         }
     }
 
-    public String toString() {
-        return "numer biletu: " + getNumberTicket() + '\n' +
-                "Nazwa wydarzenia: " + getName() + '\n' +
-                "Podaj miejsce: " + getPlace() + '\n' +
-                "podaj typ biletu: " + (getType().equals("Online") ? "bilet internetowy" :
-                (getType().equals("Standard") ? "bilet standardowy" : "bilet prezentowy")) + '\n' +
-                "cena standardowa biletu: " + getPrice() + '\n' +
-                "zniżka biletu: " + getBonus() + '\n' +
-                "cena koncowa: " + this.priceTicket();
+    public void toView(Ticket ticket) {
+        System.out.println("numer biletu: " + ticket.getId() + '\n' +
+                "Nazwa wydarzenia: " + ticket.getName() + '\n' +
+                "Podaj miejsce: " + ticket.getPlace() + '\n' +
+                "podaj typ biletu: " + (ticket.getType().equals("Online") ? "bilet internetowy" :
+                (ticket.getType().equals("Standard") ? "bilet standardowy" : "bilet prezentowy")) + '\n' +
+                "cena standardowa biletu: " + ticket.getPrice() + '\n' +
+                "zniżka biletu: " + ticket.getBonus() + '\n' +
+                "cena koncowa: " + priceTicket(ticket));
     }
 
-    public static Ticket scannerTicket() {
+    public Ticket scannerTicket() {
         Scanner scanner = new Scanner(System.in);
         System.out.print("Podaj nazwę :");
         String eventName = scanner.nextLine();
@@ -41,8 +40,10 @@ public class Price extends Ticket {
         String ticketType = scanner.nextLine();
         System.out.print("Podaj cenę : ");
         double basePrice = scanner.nextDouble();
+        scanner.nextLine();
         System.out.print("Podaj zniżkę :");
         double discount = scanner.nextDouble();
-        return new Price(eventName, location, ticketType, basePrice, discount);
+        scanner.nextLine();
+        return new Ticket(eventName, location, ticketType, basePrice, discount);
     }
 }
