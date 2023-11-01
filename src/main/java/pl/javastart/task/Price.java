@@ -24,7 +24,8 @@ public class Price extends Ticket {
         return "numer biletu: " + getNumberTicket() + '\n' +
                 "Nazwa wydarzenia: " + getName() + '\n' +
                 "Podaj miejsce: " + getPlace() + '\n' +
-                "podaj typ biletu: " + (getType().equals("Online") ? "bilet internetowy" : (getType().equals("Standard") ? "bilet standardowy" : "bilet prezentowy")) + '\n' +
+                "podaj typ biletu: " + (getType().equals("Online") ? "bilet internetowy" :
+                (getType().equals("Standard") ? "bilet standardowy" : "bilet prezentowy")) + '\n' +
                 "cena standardowa biletu: " + getPrice() + '\n' +
                 "zniżka biletu: " + getBonus() + '\n' +
                 "cena koncowa: " + this.priceTicket();
