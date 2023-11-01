@@ -11,6 +11,5 @@ public class Main {
         System.out.println(ticket);
         Ticket ticket3=Price.scannerTicket();
         System.out.println(ticket3);
-
     }
 }
